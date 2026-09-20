@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +12,16 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-
         /* Custom smooth transition */
         .input-focus {
             transition: all 0.2s ease-in-out;
         }
     </style>
 </head>
-
-<body
-    class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen flex items-center justify-center p-4 sm:p-6">
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen flex items-center justify-center p-4 sm:p-6">
 
     <main class="w-full max-w-md bg-white shadow-xl rounded-2xl border border-slate-100 overflow-hidden">
-
+        
         <!-- Header Banner -->
         <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-8 text-white text-center">
             <h1 class="text-2xl font-bold tracking-tight">Cadastro de Usuário - SITE 1</h1>
@@ -34,10 +30,9 @@
 
         <!-- Form Body -->
         <form id="userForm" class="p-6 sm:p-8 space-y-5" novalidate>
-
+            
             <div class="space-y-1.5">
-                <label for="nome" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider">Nome
-                    Completo</label>
+                <label for="nome" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider">Nome Completo</label>
                 <div class="relative">
                     <input type="text" id="nome" name="nome" required
                         class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus"
@@ -47,9 +42,7 @@
             </div>
 
             <div class="space-y-1.5">
-                <label for="dataNascimento"
-                    class="block text-xs font-semibold text-slate-700 uppercase tracking-wider">Data de
-                    Nascimento</label>
+                <label for="dataNascimento" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider">Data de Nascimento</label>
                 <div class="relative">
                     <input type="date" id="dataNascimento" name="dataNascimento" required
                         class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus">
@@ -58,8 +51,7 @@
             </div>
 
             <div class="space-y-1.5">
-                <label for="telefone"
-                    class="block text-xs font-semibold text-slate-700 uppercase tracking-wider">Telefone</label>
+                <label for="telefone" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider">Telefone</label>
                 <div class="relative">
                     <input type="text" id="telefone" name="telefone" maxlength="15" required
                         class="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent input-focus"
@@ -79,7 +71,7 @@
             </div>
 
             <div class="pt-2">
-                <button type="submit"
+                <button type="submit" id="btn-cadastrar"
                     class="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium text-sm rounded-xl shadow-lg shadow-blue-500/25 transition-all transform active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Cadastrar
                 </button>
@@ -88,16 +80,14 @@
 
         <!-- Success Feedback Modal / Box (Hidden by default) -->
         <div id="successMessage" class="hidden p-6 bg-emerald-50 border-t border-emerald-100 text-center">
-            <div
-                class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-md shadow-emerald-500/30">
+            <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-md shadow-emerald-500/30">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
             </div>
             <h3 class="text-emerald-800 font-semibold text-base">Cadastro realizado com sucesso!</h3>
             <p class="text-emerald-600 text-xs mt-1">Os dados foram validados e enviados corretamente.</p>
-            <button id="resetFormBtn"
-                class="mt-4 text-xs font-medium text-emerald-700 hover:text-emerald-800 underline focus:outline-none">
+            <button id="resetFormBtn" class="mt-4 text-xs font-medium text-emerald-700 hover:text-emerald-800 underline focus:outline-none">
                 Cadastrar outro usuário
             </button>
         </div>
@@ -115,12 +105,12 @@
             const cpfInput = document.getElementById('cpf');
 
             // --- Masks ---
-
+            
             // Phone Mask: (00) 00000-0000 or (00) 0000-0000
             telInput.addEventListener('input', (e) => {
                 let value = e.target.value.replace(/\D/g, '');
                 if (value.length > 11) value = value.slice(0, 11);
-
+                
                 if (value.length > 6) {
                     value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
                 } else if (value.length > 2) {
@@ -206,7 +196,7 @@
                     // Monta a mensagem que será enviada
                     const whatsappNumber = "5566999357985";
                     const textMessage = `*Novo Cadastro Recebido*%0A%0A*Nome:* ${nomeInput.value.trim()}%0A*Data de Nascimento:* ${formattedDate}%0A*Telefone:* ${telInput.value}%0A*CPF:* ${cpfInput.value}`;
-
+                    
                     // Cria a URL do WhatsApp Web/App
                     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${textMessage}`;
 
@@ -228,5 +218,4 @@
         });
     </script>
 </body>
-
 </html>
